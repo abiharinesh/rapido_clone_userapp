@@ -2,7 +2,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:users_app/assistants/assistant_methods.dart';
 import 'package:users_app/global/global.dart';
+import 'package:users_app/infoHandler.dart/app_info.dart';
+import 'package:users_app/mainscreens/search_places_screen.dart';
 import 'package:users_app/widgets/my_drawer.dart';
 
 
@@ -229,6 +233,9 @@ class _MainScreenState extends State<MainScreen>
        CameraPosition cameraPosition = CameraPosition(target: latLngPosition, zoom: 14);
       //updating the camera when ever location gets changed.
        newGoogleMapController!.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+
+      String humanReadableAddress = await AssistantMethods.searchAddressForGeographicCoOrdinates(userCurrentPosition!,context);
+       print("this is your address="+ humanReadableAddress);
   }
 
   @override
@@ -335,7 +342,9 @@ class _MainScreenState extends State<MainScreen>
                                 style: TextStyle(color: Colors.grey, fontSize: 12),
                               ),
                               Text(
-                                "your current location",
+                              Provider.of<AppInfo>(context).userPickUpLocation != null
+                                    ? (Provider.of<AppInfo>(context).userPickUpLocation!.locationName!).substring(10,50) + "..."
+                                    : "not getting address",
                                 style: const TextStyle(color: Colors.grey, fontSize: 14),
                               ),
                             ],
@@ -354,24 +363,37 @@ class _MainScreenState extends State<MainScreen>
                       const SizedBox(height: 16.0),
 
                       //to
-                      Row(
-                        children: [
-                          const Icon(Icons.add_location_alt_outlined, color: Colors.grey,),
-                          const SizedBox(width: 12.0,),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                               Text(
-                                "To",
-                                style: TextStyle(color: Colors.grey, fontSize: 12),
-                              ),
-                              Text(
-                                "Where to go?",
-                                style: const TextStyle(color: Colors.grey, fontSize: 14),
-                              ),
-                            ],
-                          ),
-                        ],
+                      GestureDetector(
+                        onTap:() {
+                          //go to search places screen
+                          var responseFromSearchScreen = Navigator.push(context, MaterialPageRoute(builder: (c)=> SearchPlacesScreen()));
+
+                          if(responseFromSearchScreen == "obtainedDropoff")
+                          {
+                            //draw routes - draw polyline
+                          }
+                        },
+                        child: Row(
+                          children: [
+                            const Icon(Icons.add_location_alt_outlined, color: Colors.grey,),
+                            const SizedBox(width: 12.0,),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                 const Text(
+                                  "To",
+                                  style: TextStyle(color: Colors.grey, fontSize: 12),
+                                ),
+                                Text( 
+                                  Provider.of<AppInfo>(context).userDropOffLocation != null 
+                                      ? Provider.of<AppInfo>(context).userDropOffLocation!.locationName!
+                                      : "Where to go?",
+                                  style: const TextStyle(color: Colors.grey, fontSize: 14),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
 
                       const SizedBox(height: 10.0),

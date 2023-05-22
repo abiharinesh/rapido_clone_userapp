@@ -1,7 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:users_app/infoHandler.dart/app_info.dart';
 import 'package:users_app/splashScreen/splash_screen.dart';
-
 void main() async
 {
   WidgetsFlutterBinding.ensureInitialized();
@@ -9,14 +10,17 @@ void main() async
   
   runApp(
     MyApp(
-      child:MaterialApp(
-      title: 'Users App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+      child:ChangeNotifierProvider(
+        create: (context) => AppInfo(),
+        child: MaterialApp(
+        title: 'Users App',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const MySplashScreen(),
+        debugShowCheckedModeBanner: false,
+          ),
       ),
-      home: const MySplashScreen(),
-      debugShowCheckedModeBanner: false,
-    ),
     ),
   );
 }
