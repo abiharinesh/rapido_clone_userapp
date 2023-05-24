@@ -32,7 +32,7 @@ class MyApp extends StatefulWidget
 {
 
   final Widget? child;
-  MyApp({this.child});
+  const MyApp({this.child});
   //this function is used to restart the app we can call this function anywhere in app
   static void RestartApp(BuildContext context)
   {

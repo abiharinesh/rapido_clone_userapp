@@ -81,5 +81,21 @@ class AssistantMethods
     return directionDetailsInfo;
   }
 
+   static double calculateFareAmountFromOriginToDestination(DirectionDetailsInfo directionDetailsInfo)
+  {
+    double timeTraveledFareAmountPerMinute = (directionDetailsInfo.duration_value! / 60) * 0.1;
+    double distanceTraveledFareAmountPerKilometer = (directionDetailsInfo.duration_value! / 1000) * 0.1;
 
+    //USD
+    double totalFareAmount = timeTraveledFareAmountPerMinute + distanceTraveledFareAmountPerKilometer;
+
+    //to INR
+
+    double localCurrencyTotalFare = totalFareAmount * 80;
+
+    // if there is need of  usd then return totalFareAmount and command localCurrencyTotalFare
+
+    return double.parse(localCurrencyTotalFare.toStringAsFixed(1));
+  }
+  
 }
