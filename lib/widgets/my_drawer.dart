@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:users_app/global/global.dart';
+import 'package:users_app/mainScreens/profile_screen.dart';
+import 'package:users_app/mainScreens/trips_history_screen.dart';
+import 'package:users_app/mainscreens/about_screen.dart';
 import 'package:users_app/splashScreen/splash_screen.dart';
 
 
@@ -11,7 +14,7 @@ class MyDrawer extends StatefulWidget
   MyDrawer({this.name, this.email});
 
   @override
-     createState() => _MyDrawerState();
+  _MyDrawerState createState() => _MyDrawerState();
 }
 
 
@@ -72,7 +75,7 @@ class _MyDrawerState extends State<MyDrawer>
           GestureDetector(
             onTap: ()
             {
-
+              Navigator.push(context, MaterialPageRoute(builder: (c)=> TripsHistoryScreen()));
             },
             child: const ListTile(
               leading: Icon(Icons.history, color: Colors.white54,),
@@ -88,7 +91,7 @@ class _MyDrawerState extends State<MyDrawer>
           GestureDetector(
             onTap: ()
             {
-
+              Navigator.push(context, MaterialPageRoute(builder: (c)=> ProfileScreen()));
             },
             child: const ListTile(
               leading: Icon(Icons.person, color: Colors.white54,),
@@ -104,7 +107,7 @@ class _MyDrawerState extends State<MyDrawer>
           GestureDetector(
             onTap: ()
             {
-
+              Navigator.push(context, MaterialPageRoute(builder: (c)=> AboutScreen()));
             },
             child: const ListTile(
               leading: Icon(Icons.info, color: Colors.white54,),
