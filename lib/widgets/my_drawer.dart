@@ -11,7 +11,7 @@ class MyDrawer extends StatefulWidget
   String? name;
   String? email;
 
-  MyDrawer({this.name, this.email});
+  MyDrawer({super.key, this.name, this.email});
 
   @override
   _MyDrawerState createState() => _MyDrawerState();

@@ -59,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen>
           password: passwordTextEditingController.text.trim(),
         ).catchError((msg){
           Navigator.pop(context);
-          Fluttertoast.showToast(msg: "Error: " + msg.toString());
+          Fluttertoast.showToast(msg: "Error: $msg");
         })
     ).user;
 
@@ -197,7 +197,7 @@ class _LoginScreenState extends State<LoginScreen>
                 ),
                 onPressed: ()
                 {
-                  Navigator.push(context, MaterialPageRoute(builder: (c)=> SignUpScreen()));
+                  Navigator.push(context, MaterialPageRoute(builder: (c)=> const SignUpScreen()));
                 },
               ),
 

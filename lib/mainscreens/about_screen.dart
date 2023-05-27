@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 
 class AboutScreen extends StatefulWidget
 {
+  const AboutScreen({super.key});
+
   @override
   State<AboutScreen> createState() => _AboutScreenState();
 }
@@ -23,7 +25,7 @@ class _AboutScreenState extends State<AboutScreen>
         children: [
 
           //image
-           Container(
+           SizedBox(
             height: 230,
             child: Center(
               child: Image.asset(

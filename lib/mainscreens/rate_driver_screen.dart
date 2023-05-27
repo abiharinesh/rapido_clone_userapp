@@ -10,7 +10,7 @@ class RateDriverScreen extends StatefulWidget
 {
   String? assignedDriverId;
 
-  RateDriverScreen({this.assignedDriverId});
+  RateDriverScreen({super.key, this.assignedDriverId});
 
   @override
   State<RateDriverScreen> createState() => _RateDriverScreenState();

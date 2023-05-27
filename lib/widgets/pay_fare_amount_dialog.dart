@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 
 class PayFareAmountDialog extends StatefulWidget
 {
   double? fareAmount;
 
-  PayFareAmountDialog({this.fareAmount});
+  PayFareAmountDialog({super.key, this.fareAmount});
 
   @override
   State<PayFareAmountDialog> createState() => _PayFareAmountDialogState();
@@ -84,7 +83,7 @@ class _PayFareAmountDialogState extends State<PayFareAmountDialog>
               padding: const EdgeInsets.all(18.0),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.green,
+                  backgroundColor: Colors.green,
                 ),
                 onPressed: ()
                 {
@@ -105,7 +104,7 @@ class _PayFareAmountDialogState extends State<PayFareAmountDialog>
                       ),
                     ),
                     Text(
-                      "\$  " + widget.fareAmount!.toString(),
+                      "₹${widget.fareAmount!}",
                       style: const TextStyle(
                         fontSize: 20,
                         color: Colors.white,

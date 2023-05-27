@@ -11,7 +11,8 @@ class SelectNearestActiveDriversScreen extends StatefulWidget
 {
   DatabaseReference? referenceRideRequest;
 
-  SelectNearestActiveDriversScreen({this.referenceRideRequest});
+  SelectNearestActiveDriversScreen({super.key, this.referenceRideRequest});
+
   @override
   _SelectNearestActiveDriversScreenState createState() => _SelectNearestActiveDriversScreenState();
 }
@@ -20,8 +21,7 @@ class SelectNearestActiveDriversScreen extends StatefulWidget
 
 class _SelectNearestActiveDriversScreenState extends State<SelectNearestActiveDriversScreen>
 {
-
-    String fareAmount = "";
+  String fareAmount = "";
 
   getFareAmountAccordingToVehicleType(int index)
   {
@@ -42,7 +42,8 @@ class _SelectNearestActiveDriversScreenState extends State<SelectNearestActiveDr
     }
     return fareAmount;
   }
-  
+
+
   @override
   Widget build(BuildContext context)
   {
@@ -63,7 +64,7 @@ class _SelectNearestActiveDriversScreenState extends State<SelectNearestActiveDr
           onPressed: ()
           {
             //delete/remove the ride request from database
-              widget.referenceRideRequest!.remove();
+            widget.referenceRideRequest!.remove();
             Fluttertoast.showToast(msg: "you have cancelled the ride request.");
 
             SystemNavigator.pop();
@@ -75,7 +76,8 @@ class _SelectNearestActiveDriversScreenState extends State<SelectNearestActiveDr
         itemBuilder: (BuildContext context, int index)
         {
           return GestureDetector(
-            onTap: () {
+            onTap: ()
+            {
               setState(() {
                 chosenDriverId = dList[index]["id"].toString();
               });
@@ -112,7 +114,7 @@ class _SelectNearestActiveDriversScreenState extends State<SelectNearestActiveDr
                       ),
                     ),
                     SmoothStarRating(
-                      rating: 3.5,
+                      rating: dList[index]["ratings"] == null ? 0.0 : double.parse(dList[index]["ratings"]),
                       color: Colors.black,
                       borderColor: Colors.black,
                       allowHalfRating: true,
@@ -125,7 +127,7 @@ class _SelectNearestActiveDriversScreenState extends State<SelectNearestActiveDr
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "\₹ " + getFareAmountAccordingToVehicleType(index),
+                      "\$ " + getFareAmountAccordingToVehicleType(index),
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                       ),

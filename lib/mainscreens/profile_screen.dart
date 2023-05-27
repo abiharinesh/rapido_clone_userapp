@@ -6,6 +6,8 @@ import 'package:users_app/widgets/info_design_ui.dart';
 
 class ProfileScreen extends StatefulWidget
 {
+  const ProfileScreen({super.key});
+
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }

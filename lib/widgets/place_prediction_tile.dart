@@ -13,7 +13,7 @@ class PlacePredictionTileDesign extends StatefulWidget
 {
   final PredictedPlaces? predictedPlaces;
 
-  PlacePredictionTileDesign({this.predictedPlaces});
+  const PlacePredictionTileDesign({super.key, this.predictedPlaces});
 
   @override
   State<PlacePredictionTileDesign> createState() => _PlacePredictionTileDesignState();
@@ -67,7 +67,7 @@ class _PlacePredictionTileDesignState extends State<PlacePredictionTileDesign> {
         getPlaceDirectionDetails(widget.predictedPlaces!.place_id, context);
       },
       style: ElevatedButton.styleFrom(
-        primary: Colors.white24,
+        backgroundColor: Colors.white24,
       ),
       child: Padding(
         padding: const EdgeInsets.all(4.0),

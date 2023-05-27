@@ -6,7 +6,7 @@ class InfoDesignUIWidget extends StatefulWidget
   String? textInfo;
   IconData? iconData;
 
-  InfoDesignUIWidget({this.textInfo, this.iconData});
+  InfoDesignUIWidget({super.key, this.textInfo, this.iconData});
 
   @override
   State<InfoDesignUIWidget> createState() => _InfoDesignUIWidgetState();

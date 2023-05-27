@@ -7,6 +7,8 @@ import 'package:users_app/widgets/history_design_ui.dart';
 
 class TripsHistoryScreen extends StatefulWidget
 {
+  const TripsHistoryScreen({super.key});
+
   @override
   State<TripsHistoryScreen> createState() => _TripsHistoryScreenState();
 }
